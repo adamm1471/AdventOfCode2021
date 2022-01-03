@@ -62,10 +62,10 @@ static void PartTwo(List<int>? depths)
         if (pos >= 3)
         {
 
-            var current_total = new List<int>() { depths[pos], depths[pos - 1], depths[pos - 2] }.Sum();
-            var previous_total = new List<int>() { depths[pos - 1], depths[pos - 2], depths[pos - 3] }.Sum();
+            var current_total = depths[pos] + depths[pos - 1] + depths[pos - 2];
+            var previous_total = depths[pos - 1] + depths[pos - 2] + depths[pos - 3];
 
-            if(current_total > previous_total)
+            if (current_total > previous_total)
             {
                 count++;
             }
