@@ -1,6 +1,6 @@
 ﻿/*
  * --- Day 2: Dive! ---
- * Status: solved
+ * Solved
  */
 
 using System;
@@ -55,7 +55,7 @@ void PartOne()
                 depth -= distance;
             }
         }
-        catch (IndexOutOfRangeException ex)
+        catch (IndexOutOfRangeException)
         { } //ignore out of bounds
     }
     Console.WriteLine("Part One Answer: {0}", depth * horizontal);
@@ -107,7 +107,7 @@ void PartTwo()
                 aim -= distance;
             }
         }
-        catch (IndexOutOfRangeException ex)
+        catch (IndexOutOfRangeException)
         { } //ignore out of bounds
 
     }

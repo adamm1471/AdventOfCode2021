@@ -1,6 +1,6 @@
 ﻿/*
  * --- Day 1: Sonar Sweep ---
- * Status: solved
+ * Solved
  */
 
 using System;

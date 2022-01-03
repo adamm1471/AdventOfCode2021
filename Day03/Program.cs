@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * --- Day 3: Binary Diagnostic ---
+ * Completed
+ */
+
+using System;
 using System.IO;
 
 string[] data = null;
