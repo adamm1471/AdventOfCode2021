@@ -1,10 +1,13 @@
-﻿List<string>? data = null;
+﻿/*
+ * ---Day 14: Extended Polymerization ---
+ * Solved
+ */
+
+List<string>? data = null;
 using (var sr = new StreamReader(@"input.txt"))
     data = sr.ReadToEnd().Split($"\r\n", StringSplitOptions.RemoveEmptyEntries).ToList();
 
-Console.WriteLine();
-
-List<char> elements = new(); // add so we can iterate over this later
+List<char> elements = new();
 char[] sequence = data[0].ToCharArray();
 data.RemoveAt(0);
 
@@ -28,14 +31,7 @@ foreach (string mapdata in data)
     }
 }
 
-Console.WriteLine("Verifying map:");
-foreach (string key in splitmap.Keys)
-{
-    Console.WriteLine($"Key: {key}  Value: {splitmap[key]}");   
-}
-Console.WriteLine();
-
-Console.WriteLine("Generating initial pairs dictionary.");
+// Generate the initial pairs dictionary
 Dictionary<string, long> pairs = new();
 for(int i = 0; i < sequence.Length -1; i++)
 {
@@ -49,24 +45,18 @@ for(int i = 0; i < sequence.Length -1; i++)
         pairs[newpair] = 1;
     }
 }
-Console.WriteLine();
 
-Console.WriteLine("Splitting those polymers!\n");
+
 int numSteps = 40;
 for(int i = 0;i < numSteps; i++)
 {
-    Console.WriteLine($"Step #{i + 1}");
     Dictionary<string, long> intermediate = new();
-    if (i == 8)
-    {
-        Console.WriteLine("break");
-    }
+    
     foreach (KeyValuePair<string, long> pair in pairs)
     {
         string splitstring = splitmap[pair.Key];
         string pair1 = $"{pair.Key[0]}{splitstring}";
         string pair2 = $"{splitstring}{pair.Key[1]}";
-        Console.WriteLine($"{pair.Key} ({pair.Value,4}) / {splitstring} -> ( {pair1}, {pair2} ) {pair.Value,4}");
 
         // add new pair #1
         if (intermediate.ContainsKey(pair1))
@@ -78,6 +68,7 @@ for(int i = 0;i < numSteps; i++)
             intermediate[pair1] = pair.Value;
         }
 
+        // add pair #2
         if (intermediate.ContainsKey(pair2))
         {
             intermediate[pair2] += pair.Value;
@@ -88,23 +79,13 @@ for(int i = 0;i < numSteps; i++)
         }            
     }
 
-    Console.WriteLine();
     pairs = new(intermediate);
-    Console.WriteLine($"Verifying pairs at the end of step {i + 1}");
-    foreach(KeyValuePair<string, long> pair in pairs)
-    {
-        Console.Write($"{pair.Key}:{pair.Value} ");
-    }
-    Console.WriteLine(); Console.WriteLine();
 
 }
 
 Dictionary<char, long> counts = new();
-
 foreach(KeyValuePair<string, long> pair in pairs)
 {
-    Console.WriteLine($"{pair.Key} : {pair.Value}");
-
     foreach (char c in pair.Key)
     {
         if(counts.ContainsKey(c))
@@ -119,16 +100,10 @@ foreach(KeyValuePair<string, long> pair in pairs)
 
 }
 
-Console.WriteLine();
-Console.WriteLine("Element counts:");
-
 List<KeyValuePair<char, long>> sortedCounts = counts.ToList();
 sortedCounts.Sort((p1, p2) => p1.Value.CompareTo(p2.Value));
 
-foreach (KeyValuePair<char, long> pair in sortedCounts)
-{
-    Console.WriteLine($"{pair.Key} : {pair.Value}");
-}
 long difference = sortedCounts.Last().Value - sortedCounts.First().Value;
-//Yeah it double-counted, and I'm too lazy to fix the logic above
-Console.WriteLine($"Part One. The difference between the most common and least common element is {Math.Ceiling((double)difference/2)}");
+
+//Yeah it double-counted, I'll fix it later, maybe.
+Console.WriteLine($"The difference between the most common and least common element is {Math.Ceiling((double)difference/2)}.");

@@ -1,4 +1,9 @@
-﻿List<string>? data = null;
+﻿/*
+ * --- Day 7: The Treachery of Whales ---
+ * Solved
+ */
+
+List<string>? data = null;
 using (var sr = new StreamReader(@"input.txt"))
     data = sr.ReadToEnd().Split($"\n", StringSplitOptions.RemoveEmptyEntries).ToList();
 

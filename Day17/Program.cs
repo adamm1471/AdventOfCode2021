@@ -1,2 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿/*
+ * --- Day 17: Trick Shot ---
+ * Not started.
+ */

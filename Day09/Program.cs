@@ -1,4 +1,7 @@
-﻿using System.Numerics;
+﻿/*
+ * --- Day 9: Smoke Basin ---
+ * Solved
+ */
 
 List<string>? data = null;
 using (var sr = new StreamReader(@"input.txt"))
@@ -36,18 +39,22 @@ void PartOne(int[,] map)
             List<int> surrounding = new();
             foreach (var (p1, p2) in proximity)
             {
-                try
+                int cx = x + p1;
+                int cy = y + p2;
+
+                if (cx >= 0 && cy >= 0 && cx < map.GetLength(0) && cy < map.GetLength(1))
                 {
                     surrounding.Add(map[x + p1, y + p2]);
                 }
-                catch (IndexOutOfRangeException) { }
             }
             if (currentNumber < surrounding.Min())
+            {
                 lowPoints.Add(currentNumber);
+            }
         }
     }
 
-    BigInteger total = lowPoints.Sum() + (lowPoints.Count);
+    long total = lowPoints.Sum() + (lowPoints.Count);
     Console.WriteLine($"Part One. The total is {total}.");
 }
 
@@ -67,12 +74,13 @@ void PartTwo(int[,] map)
             List<int> surrounding = new();
             foreach (var (p1, p2) in proximity)
             {
-                try
+                int cx = x + p1;
+                int cy = y + p2;
+
+                if (cx >= 0 && cy >= 0 && cx < map.GetLength(0) && cy < map.GetLength(1))
                 {
                     surrounding.Add(map[x + p1, y + p2]);
                 }
-                catch (IndexOutOfRangeException)
-                { }
             }
             if (currentNumber < surrounding.Min())
             {
@@ -118,12 +126,13 @@ List<(int, int)> GetValidNeighbors(int[,] map, (int x, int y) sp )
     List<(int, int)> gn = new();
     foreach (var (p1, p2) in proximity)
     {
-        try
+        int cx = sp.x + p1;
+        int cy = sp.y + p2;
+        if (cx >= 0 && cy >= 0 && cx < map.GetLength(0) && cy < map.GetLength(1))
         {
             if (map[sp.x + p1, sp.y + p2] < 9)
                 gn.Add((sp.x + p1, sp.y + p2));
         }
-        catch (IndexOutOfRangeException) { }
     }
     return gn;
 }

@@ -1,4 +1,9 @@
-﻿List<string>? data = null;
+﻿/*
+ * --- Day 10: Syntax Scoring ---
+ * Solved
+ */
+
+List<string>? data = null;
 using (var sr = new StreamReader(@"input.txt"))
     data = sr.ReadToEnd().Split($"\r\n", StringSplitOptions.RemoveEmptyEntries).ToList();
 

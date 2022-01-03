@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* 
+ * --- Day 5: Hydrothermal Venture ---
+ * Solved
+ */
+using System;
 using System.IO;
 
 List<string>? data = null;

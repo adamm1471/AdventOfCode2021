@@ -1,4 +1,9 @@
-﻿using System.Text.RegularExpressions;
+﻿/*
+ * --- Day 13: Transparent Origami ---
+ * Solved
+ */
+
+using System.Text.RegularExpressions;
 
 List<(int, int)> coords = new();
 List<(string, int)> instructions = new();
@@ -22,8 +27,6 @@ foreach ( (string axis, int position) instr in instructions)
 Console.WriteLine();
 DisplayGrid(points);
 
-// ##########################################################################
-
 int CountGrid(int[,] grid)
 {
     int count = 0;
@@ -45,7 +48,7 @@ int CountGrid(int[,] grid)
 // returns a resized grid
 int[,] FoldGrid(int[,] grid, string axis, int foldposition)
 {
-    int[,] interim = null;
+    int[,]? interim = null;
 
     if (axis.Equals("x")) // fold horizontally leftwards
     {

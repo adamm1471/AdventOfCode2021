@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ * --- Day 4: Giant Squid ---
+ * Solved
+ */
+using System;
 using System.IO;
 
 
@@ -12,7 +16,6 @@ try
 {
     using (var sr = new StreamReader(@"input.txt"))
     {
-        //data = sr.ReadToEnd().Split($"{Environment.NewLine}{Environment.NewLine}", StringSplitOptions.RemoveEmptyEntries).ToList();
         data = sr.ReadToEnd().Split($"\n\n", StringSplitOptions.RemoveEmptyEntries).ToList();
     }
 }

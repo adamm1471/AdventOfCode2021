@@ -1,4 +1,8 @@
-﻿
+﻿/*
+ * --- Day 8: Seven Segment Search ---
+ * Solved
+ */
+
 List<string>? data = null;
 using (var sr = new StreamReader(@"input.txt"))
     data = sr.ReadToEnd().Split($"\r\n", StringSplitOptions.RemoveEmptyEntries).ToList();
@@ -21,13 +25,6 @@ PartTwo(crypto);
 watch.Stop();
 Console.WriteLine($"This took {watch.ElapsedMilliseconds} ms to complete.");
 
-/*
-
-var watch = System.Diagnostics.Stopwatch.StartNew();
-watch.Stop();
-Console.WriteLine($"This took {watch.ElapsedMilliseconds} ms to complete.");
-
-*/
 
 static void PartOne(List<(string[] signalPattern, string[] outputValue)> crypto)
 {

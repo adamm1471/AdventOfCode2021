@@ -1,38 +1,31 @@
-﻿
+﻿/*
+ * --- Day 21: Dirac Dice ---
+ * Part 1: Solved
+ * Part 2: Not yet solved
+ */
 
 
-
-
-//PartOne();
+PartOne();
 PartTwo();
-
-
 
 void PartOne()
 {
     int dDicePos = 1;
-
     int rolls = 0;
 
-    int p1 = 0;
+    int p1;
     int p1pos = 10;
     long p1score = 0;
 
-    int p2 = 0;
+    int p2;
     int p2pos = 2;
     long p2score = 0;
 
-
-
     while (p1score < 1000 && p2score < 1000)
     {
-
         p1 = RollNextDice(ref dDicePos, ref rolls);
         p1pos = MoveNextPos(p1, p1pos);
         p1score += p1pos;
-
-        Console.WriteLine($"Player 1 (rolled {p1}) moved to {p1pos}");
-        Console.WriteLine($"Player 1: {p1score}\n");
 
         if (p1score >= 1000) { break; }
 
@@ -41,14 +34,10 @@ void PartOne()
         p2score += p2pos;
 
         if (p2score >= 1000) { break; }
-
-        Console.WriteLine($"Player 2 (rolled {p2}) moved to {p2pos}");
-        Console.WriteLine($"Player 2: {p2score}\n");
-
     }
 
     long score = rolls * ((p1score < p2score) ? p1score : p2score);
-    Console.WriteLine($"Final Score: {score}");
+    Console.WriteLine($"Part One. Final Score: {score}");
 }
 
 void PartTwo()
@@ -65,9 +54,6 @@ void PartTwo()
             }
         }
     }
-
-    Console.WriteLine($"There are {possibleRolls.Count()} possible rolls.");
-
 
 }
 

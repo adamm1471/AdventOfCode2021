@@ -1,4 +1,7 @@
 ﻿/*
+ * --- Day 11: Dumbo Octopus ---
+ * Solved
+ * 
  * Solution process
  * 
  * For each STEP *
@@ -11,11 +14,16 @@
  * 
  */
 
+/*
 Console.Write("How many steps do you want to simulate: ");
 int totalsteps = Convert.ToInt32(Console.ReadLine());
 Console.Write("What step do you want total flash count: ");
 int flashstep = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine();
+*/
+
+int totalsteps = 500;
+int flashstep = 100;
 
 var watch = System.Diagnostics.Stopwatch.StartNew();
 
@@ -28,6 +36,7 @@ int flash = 0;
 int answer = 0;
 int firstsync = 0;
 bool foundFirstSync = false;
+
 foreach (int i in Enumerable.Range(1, totalsteps))
 {
     StepOctopi(octopi);
@@ -95,18 +104,20 @@ void ChainReaction(int[,] octopi, ref int flash)
             List<(int, int)> proximity = new List<(int, int)> { (0, -1), (-1, 0), (1, 0), (0, 1), (-1, 1), (1, 1), (-1, -1), (1, -1) };
             foreach ( (int ox, int oy) prox in proximity)
             {
-                try
+                int checkx = octo.ox + prox.ox;
+                int checky = octo.oy + prox.oy;
+
+                if (checkx >= 0 && checky >= 0 && checkx < octopi.GetLength(0) && checky < octopi.GetLength(1))
                 {
                     // after a 'step', there should not be a 0, except for one already exploded
-                    if (octopi[octo.ox + prox.ox, octo.oy + prox.oy] != 0)
-                        octopi[octo.ox + prox.ox, octo.oy + prox.oy]++;
+                    if (octopi[checkx, checky] != 0)
+                        octopi[checkx, checky]++;
                     // if it goes over, add to stack if the coordinates don't already exist
-                    if (octopi[octo.ox + prox.ox, octo.oy + prox.oy] > 9)
-                        if (!explosionStack.Contains( (octo.ox + prox.ox, octo.oy + prox.oy) ))
-                            explosionStack.Add((octo.ox + prox.ox, octo.oy + prox.oy));
+                    if (octopi[checkx, checky] > 9)
+                        if (!explosionStack.Contains((checkx, checky)))
+                            explosionStack.Add((checkx, checky));
+
                 }
-                catch (IndexOutOfRangeException)
-                { }
             }
         }
     }

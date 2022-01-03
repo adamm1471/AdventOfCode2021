@@ -1,4 +1,8 @@
-﻿using System.Numerics;
+﻿/*
+ * --- Day 6: Lanternfish ---
+ * Solved
+ */
+using System.Numerics;
 
 List<string>? data = null;
 using (var sr = new StreamReader(@"input.txt"))
