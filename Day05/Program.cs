@@ -36,10 +36,10 @@ foreach (var d in data)
     pts.Add(maxXY);
     maxXY = pts.Max();
 
-    Line temp = new();
-    temp.Point1 = new Point(p1[0], p1[1]);
-    temp.Point2 = new Point(p2[0], p2[1]);
-    lines.Add(temp);
+    Point pt1 = new Point(p1[0], p1[1]);
+    Point pt2 = new Point(p2[0], p2[1]);
+
+    lines.Add(new Line(pt1, pt2));
 }
 
 
@@ -78,6 +78,12 @@ class Line
 
     public Point Point1 { get; set; }
     public Point Point2 { get; set; }
+
+    public Line(Point p1, Point p2)
+    {
+        Point1 = p1;
+        Point2 = p2;
+    }
 
     public float Slope()
     {

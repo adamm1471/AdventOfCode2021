@@ -6,24 +6,21 @@
 using System;
 using System.IO;
 
-string[] data = null;
-List<int[]> diagnostics = new List<int[]>();   
+string[] data = Array.Empty<string>();
+List<int[]> diagnostics = new();
+
 try
 {
-    using (var sr = new StreamReader(@"input.txt"))
-    {
-        data = sr.ReadToEnd().Split('\n', StringSplitOptions.RemoveEmptyEntries);
-        foreach (var d in data)
-        {
-            //diagnostics.Add(d.ToCharArray().Select(i => int.Parse(i)));
-            diagnostics.Add(Array.ConvertAll(d.ToCharArray(), c => (int)Char.GetNumericValue(c)));
-        }
-    }
+    data = File.ReadAllLines(@"input.txt").Where(f => !string.IsNullOrWhiteSpace(f)).ToArray();
 }
 catch (Exception ex)
 {
-    Console.WriteLine("Error in importing input file:");
-    Console.WriteLine(ex.Message);
+    Console.WriteLine("Error in importing input file:" + ex.Message);
+}
+
+foreach (var d in data)
+{
+    diagnostics.Add(Array.ConvertAll(d.ToCharArray(), c => (int)Char.GetNumericValue(c)));
 }
 
 var watch = System.Diagnostics.Stopwatch.StartNew();

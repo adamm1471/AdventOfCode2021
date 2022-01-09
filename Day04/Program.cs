@@ -26,7 +26,7 @@ catch (Exception ex)
 }
 
 int[] numbers = data[0].Split(",", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
-data.RemoveAt(0); // remove numbers
+data.RemoveAt(0); 
 
 foreach (var d in data)
 {

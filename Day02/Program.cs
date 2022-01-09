@@ -14,16 +14,11 @@ Console.WriteLine($"This took {watch.ElapsedMilliseconds.ToString()} ms to compl
 
 void PartOne()
 {
-    string[] instructions = { };
+    string[] instructions = Array.Empty<string>();
 
     try
     {
-        using (var sr = new StreamReader(@"input.txt"))
-        {
-            String data = "";
-            data = sr.ReadToEnd();
-            instructions = data.Split('\n');
-        }
+        instructions = File.ReadAllLines(@"input.txt").Where(f => !string.IsNullOrWhiteSpace(f)).ToArray();
     }
     catch (Exception ex)
     {
@@ -64,16 +59,11 @@ void PartOne()
 void PartTwo()
 {
 
-    string[] instructions = { };
+    string[] instructions = Array.Empty<string>();
 
     try
     {
-        using (var sr = new StreamReader(@"input.txt"))
-        {
-            String data = "";
-            data = sr.ReadToEnd();
-            instructions = data.Split('\n');
-        }
+        instructions = File.ReadAllLines(@"input.txt");
     }
     catch (Exception ex)
     {
